@@ -1,25 +1,50 @@
 package com.example.graphql.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import java.util.Arrays;
-import java.util.List;
+@Entity
+public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-public record Book(String id, String name, int pageCount, String authorId) {
+    private String name;
+    private int pageCount;
+    private Long authorId;
 
-    private static List<Book> books = Arrays.asList(
-            new Book("book-1", "Effective Java", 416, "author-3"),
-            new Book("book-2", "Hitchhiker's Guide to the Galaxy", 208, "author-2"),
-            new Book("book-3", "Down Under", 436, "author-3")
-    );
-
-    public static Book getById(String id) {
-        return books.stream()
-                .filter(book -> book.id().equals(id))
-                .findFirst()
-                .orElse(null);
+    // Getters and Setters
+    public Long getId() {
+        return id;
     }
 
-    public static List<Book> getAll() {
-        return books;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 }

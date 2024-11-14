@@ -1,20 +1,58 @@
 package com.example.graphql.models;
 
-import java.util.Arrays;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-public record Review(String id, String bookId, String reviewer, int rating, String comment) {
+@Entity
+public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long bookId;
+    private String reviewer;
+    private int rating;
+    private String comment;
 
-    private static List<Review> reviews = Arrays.asList(
-            new Review("review-1", "book-1", "Bloch", 5, "Great book!"),
-            new Review("review-2", "book-2", "Adams", 4, "Good read"),
-            new Review("review-3", "book-3", "Paula", 5, "Badjob")
-    );
+    // Getters y Setters
+    public Long getId() {
+        return id;
+    }
 
-    public static Review getById(String id) {
-        return reviews.stream()
-                .filter(review -> review.id().equals(id))
-                .findFirst()
-                .orElse(null);
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
+    }
+
+    public String getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

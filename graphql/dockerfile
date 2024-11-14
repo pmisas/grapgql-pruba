@@ -1,0 +1,11 @@
+# Usar imagen de Java 17
+FROM openjdk:17-jdk-slim
+
+# Copiar JAR al contenedor
+COPY target/graphql-0.0.1-SNAPSHOT.jar app.jar
+
+# Puerto de la aplicación
+EXPOSE 8080
+
+# Comando para ejecutar la aplicación
+ENTRYPOINT ["java", "-jar", "/app.jar"]

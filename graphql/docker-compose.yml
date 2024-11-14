@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name: graphql_postgres
+    environment:
+      POSTGRES_USER: paula
+      POSTGRES_PASSWORD: postgress
+      POSTGRES_DB: graphql_db
+    ports:
+      - "5435:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
